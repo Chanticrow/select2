@@ -8,6 +8,14 @@ remote data sets, and pagination of results.
 To get started, checkout examples and documentation at
 https://select2.org/
 
+
+Fork Notes
+----------
+Needed an enhancement to designate some selection options as pre-selected and non-removable.  
+During the process I found the 4.0.6 RC to be unstable.  Changes were made based on the 4.0.5 tag.
+The changes are not well thought out, but, like many of us, I was in a hurry.  It works for my purposes.
+
+
 Use cases
 ---------
 * Enhancing native selects with search.
