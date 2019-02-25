@@ -957,6 +957,10 @@ S2.define('select2/results',[
       attrs['aria-disabled'] = 'true';
     }
 
+    if (data.preventRemove) {
+      attrs['preventRemove'] = 'true';
+    }
+
     if (data.id == null) {
       delete attrs['aria-selected'];
     }
@@ -1651,14 +1655,23 @@ S2.define('select2/selection/multiple',[
     return escapeMarkup(template(data, container));
   };
 
-  MultipleSelection.prototype.selectionContainer = function () {
-    var $container = $(
-      '<li class="select2-selection__choice">' +
-        '<span class="select2-selection__choice__remove" role="presentation">' +
-          '&times;' +
-        '</span>' +
-      '</li>'
-    );
+  MultipleSelection.prototype.selectionContainer = function (preventRemove) {
+    var $container;
+    
+    if (preventRemove === "true"){
+      $container = $(
+        '<li class="select2-selection__choice"></li>'
+      );
+    }
+    else {
+      $container = $(
+        '<li class="select2-selection__choice">' +
+          '<span class="select2-selection__choice__remove" role="presentation">' +
+            '&times;' +
+          '</span>' +
+        '</li>'
+      );
+    }   
 
     return $container;
   };
@@ -1675,7 +1688,7 @@ S2.define('select2/selection/multiple',[
     for (var d = 0; d < data.length; d++) {
       var selection = data[d];
 
-      var $selection = this.selectionContainer();
+      var $selection = this.selectionContainer(selection.preventRemove);
       var formatted = this.display(selection, $selection);
 
       $selection.append(formatted);
@@ -3225,6 +3238,10 @@ S2.define('select2/data/select',[
       option.title = data.title;
     }
 
+    if (data.preventRemove) {
+      option.preventRemove = data.preventRemove;
+    }
+
     var $option = $(option);
 
     var normalizedData = this._normalizeItem(data);
@@ -3251,7 +3268,8 @@ S2.define('select2/data/select',[
         text: $option.text(),
         disabled: $option.prop('disabled'),
         selected: $option.prop('selected'),
-        title: $option.prop('title')
+        title: $option.prop('title'),
+        preventRemove: $option.attr('preventRemove')
       };
     } else if ($option.is('optgroup')) {
       data = {
