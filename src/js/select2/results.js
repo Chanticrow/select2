@@ -180,6 +180,10 @@ define([
       attrs['aria-disabled'] = 'true';
     }
 
+    if (data.preventRemove) {
+      attrs['preventRemove'] = 'true';
+    }
+
     if (data.id == null) {
       delete attrs['aria-selected'];
     }

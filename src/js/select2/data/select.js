@@ -186,6 +186,10 @@ define([
       option.title = data.title;
     }
 
+    if (data.preventRemove) {
+      option.preventRemove = data.preventRemove;
+    }
+
     var $option = $(option);
 
     var normalizedData = this._normalizeItem(data);
@@ -212,7 +216,8 @@ define([
         text: $option.text(),
         disabled: $option.prop('disabled'),
         selected: $option.prop('selected'),
-        title: $option.prop('title')
+        title: $option.prop('title'),
+        preventRemove: $option.attr('preventRemove')
       };
     } else if ($option.is('optgroup')) {
       data = {

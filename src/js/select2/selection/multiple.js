@@ -65,14 +65,23 @@ define([
     return escapeMarkup(template(data, container));
   };
 
-  MultipleSelection.prototype.selectionContainer = function () {
-    var $container = $(
-      '<li class="select2-selection__choice">' +
-        '<span class="select2-selection__choice__remove" role="presentation">' +
-          '&times;' +
-        '</span>' +
-      '</li>'
-    );
+  MultipleSelection.prototype.selectionContainer = function (preventRemove) {
+    var $container;
+    
+    if (preventRemove === "true"){
+      $container = $(
+        '<li class="select2-selection__choice"></li>'
+      );
+    }
+    else {
+      $container = $(
+        '<li class="select2-selection__choice">' +
+          '<span class="select2-selection__choice__remove" role="presentation">' +
+            '&times;' +
+          '</span>' +
+        '</li>'
+      );
+    }   
 
     return $container;
   };
@@ -89,7 +98,7 @@ define([
     for (var d = 0; d < data.length; d++) {
       var selection = data[d];
 
-      var $selection = this.selectionContainer();
+      var $selection = this.selectionContainer(selection.preventRemove);
       var formatted = this.display(selection, $selection);
 
       $selection.append(formatted);
