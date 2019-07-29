@@ -77,7 +77,7 @@ define([
       $container = $(
         '<li class="select2-selection__choice">' +
           '<span class="select2-selection__choice__remove" role="presentation">' +
-            '<span class="far fa-times-circle fa-sm text-white"></span>' +
+            '<span class="far fa-times-circle fa-sm text-warning" style="padding-right: 5px;"></span>' +
           '</span>' +
         '</li>'
       );
