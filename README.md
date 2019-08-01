@@ -17,6 +17,7 @@ Needed an enhancement to designate some selection options as pre-selected and no
 During the process I found the 4.0.6 RC to be unstable.  Changes were made based on the 4.0.5 tag.
 The changes are not well thought out, but, like many of us, I was in a hurry.  It works for my purposes.
 
+To build run "grunt compile" and "grunt minify".
 
 Use cases
 ---------
