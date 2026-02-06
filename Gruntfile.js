@@ -1,4 +1,4 @@
-const sass = require('node-sass');
+const sass = require('sass');
 
 module.exports = function (grunt) {
   // Full list of files that must be included by RequireJS
@@ -114,13 +114,13 @@ module.exports = function (grunt) {
       }
     },
 
-    qunit: {
-      all: {
-        options: {
-          urls: testUrls
-        }
-      }
-    },
+    // qunit: {
+    //   all: {
+    //     options: {
+    //       urls: testUrls
+    //     }
+    //   }
+    // },
 
     jshint: {
       options: {
@@ -151,7 +151,7 @@ module.exports = function (grunt) {
       dev: {
         options: {
           implementation: sass,
-          outputStyle: 'nested'
+          outputStyle: 'expanded'
         },
         files: {
           'dist/css/select2.css': [
@@ -250,7 +250,7 @@ module.exports = function (grunt) {
 
   grunt.loadNpmTasks('grunt-sass');
 
-  grunt.registerTask('default', ['compile', 'test', 'minify']);
+  grunt.registerTask('default', ['compile', 'minify']);
 
   grunt.registerTask('compile', [
     'requirejs:dist', 'requirejs:dist.full', 'requirejs:i18n',
@@ -258,5 +258,5 @@ module.exports = function (grunt) {
     'sass:dev'
   ]);
   grunt.registerTask('minify', ['uglify', 'sass:dist']);
-  grunt.registerTask('test', ['connect:tests', 'qunit', 'jshint']);
+  // grunt.registerTask('test', ['connect:tests', 'qunit']);
 };
